@@ -22,7 +22,7 @@
     </dependencies>
 
     <build>
-        <!-- Keep CalculatorApp.java in the repository root, as the lab requires. -->
+        <!-- Java source files are kept in the repository root for this lab. -->
         <sourceDirectory>${project.basedir}</sourceDirectory>
         <plugins>
             <plugin>
@@ -31,16 +31,8 @@
                 <version>3.14.1</version>
                 <configuration>
                     <includes>
-                        <include>CalculatorApp.java</include>
+                        <include>*.java</include>
                     </includes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-                <configuration>
-                    <mainClass>CalculatorApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>

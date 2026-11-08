@@ -5,8 +5,7 @@
       "type": "java",
       "name": "Run JavaFX Lab (any class name)",
       "request": "launch",
-      "mainClass": "LabLauncher",
-      "projectName": "cmp129-week12-lab01"
+      "mainClass": "LabLauncher"
     }
   ]
 }

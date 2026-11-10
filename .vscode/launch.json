@@ -3,9 +3,18 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Run JavaFX Lab (any class name)",
+      "name": "Run JavaFX Lab",
       "request": "launch",
-      "mainClass": "LabLauncher"
+      "mainClass": "LabLauncher",
+      "cwd": "${workspaceFolder}",
+      "vmArgs": "--module-path \"${input:javafxLibPath}\" --add-modules javafx.controls"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "javafxLibPath",
+      "type": "promptString",
+      "description": "Paste the full path to your extracted JavaFX SDK lib folder (contains javafx.controls.jar). Do not include quotation marks."
     }
   ]
 }

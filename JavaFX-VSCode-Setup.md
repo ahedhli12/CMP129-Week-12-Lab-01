@@ -1,88 +1,68 @@
-# JavaFX Setup for VS Code (Windows — No Maven Required)
+# JavaFX Setup for VS Code (Windows, No Maven Required)
 
-## CMP-129 Week 12 Lab 01 — Calculator
+## CMP-129 Week 12 Lab 01 — JavaFX Calculator
 
-These instructions explain how to set up JavaFX to run the calculator in Visual Studio Code on Windows **without Maven**. You do not need to change the calculator logic to configure JavaFX.
+Set up the JavaFX SDK one time. After that, use **Run and Debug → Run CMP129 JavaFX**. There is no path prompt on every run.
 
-### 1. Install Java and VS Code extensions
+### Step 1 — Install Java and VS Code
+1. Install a full **JDK** (not just a JRE). Use a JavaFX SDK version compatible with your JDK.
+2. Open VS Code and install **Extension Pack for Java** (Microsoft).
+3. Open the **whole repository folder** in VS Code.
+4. Run `java -version` and `javac -version` in the integrated terminal. If VS Code picked the wrong JDK, run **Java: Configure Java Runtime** from the Command Palette.
 
-- Install a full **JDK** (not just a JRE) and check it with `java -version` and `javac -version` in VS Code's terminal.
-- In VS Code, install Microsoft's **Extension Pack for Java**, which includes the Java debugger.
-- Use a **JavaFX SDK version compatible with your installed JDK**. For example, use JavaFX 26 with JDK 26. JavaFX 27 may require a newer JDK and may not work with JDK 26.
+### Step 2 — Download and extract the JavaFX SDK
+1. Download the **SDK** ZIP for your operating system and architecture from [Gluon](https://gluonhq.com/products/javafx/).
+2. Extract the ZIP. **Do not use the ZIP file as the path.**
+3. Find the extracted `lib` folder. It must contain `javafx.controls.jar`.
+4. Copy the full path to that `lib` folder. Example: `C:/Users/Student/Downloads/javafx-sdk-25/lib`.
 
-### 2. Download and extract JavaFX SDK
+### Step 3 — Edit both .vscode files
+Use **your own** JavaFX folder path, not the example placeholder.
 
-1. Visit https://gluonhq.com/products/javafx/.
-2. Choose the **Windows x64 SDK** matching your JDK (not the jmods or source archive).
-3. Extract the ZIP file using **Extract All**.
-4. Locate the extracted SDK's `lib` folder. It should contain `javafx.controls.jar`, `javafx.graphics.jar`, and `javafx.base.jar`.
-5. In File Explorer, open `lib`, click the address bar, and copy the **full folder path**.
-
-**Important:** The ZIP file itself is not a module path. You must extract it first.
-
-### 3. Configure VS Code
-
-1. Clone/open this repository in VS Code.
-2. Open `.vscode/launch.json`.
-3. In `vmArgs`, replace the instructor's example path with **your own** extracted SDK `lib` folder path.
-4. In JSON, each Windows backslash must be doubled (for example, `C:\\JavaFX\\javafx-sdk-26\\lib`).
-
-The configuration should look like this, substituting your real SDK path:
-
-```json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "java",
-      "name": "Run JavaFX Calculator (SDK, no Maven)",
-      "request": "launch",
-      "mainClass": "CalculatorApp",
-      "vmArgs": "--module-path \"C:\\JavaFX\\javafx-sdk-26\\lib\" --add-modules javafx.controls"
-    }
-  ]
-}
-```
-
-The repository currently contains the instructor's **machine-specific** JavaFX 27 SDK path. It is not expected to work on student computers without editing it.
-
-### 4. Make sure the Java class name matches
-
-The assignment's required file is `CalculatorApp.java` in the repository root. Its public class must be named `CalculatorApp` and extend `javafx.application.Application`. Implement the required `start(Stage stage)` method and a `main` method that calls `launch(args)`.
-
-Do not rename your class to `SimpleCalculator` unless you also update the launch configuration's `mainClass`. Do not create a `src` folder for this assignment.
-
-### 5. Configure the JavaFX compile-time libraries if imports are unresolved
-
-If VS Code shows red underlines on `javafx.*` imports, open `.vscode/settings.json` and add the following property inside the existing JSON object (keep the other settings and use a comma between properties):
+Open `.vscode/settings.json`. Change only this library path, **keeping `/*.jar` at the end**:
 
 ```json
 "java.project.referencedLibraries": [
-  "C:/JavaFX/javafx-sdk-26/lib/*.jar"
+  "C:/Users/Student/Downloads/javafx-sdk-25/lib/*.jar"
 ]
 ```
 
-Replace the sample path with your extracted SDK `lib` folder. Forward slashes work in this setting. If VS Code still shows errors, open the Command Palette and run **Java: Clean Java Language Server Workspace**, then restart.
+Open `.vscode/launch.json`. Change the example `lib` folder path in `vmArgs` to the **same** folder, but **without `/*.jar`**:
 
-### 6. Run the calculator
+```json
+"vmArgs": "--module-path \"C:/Users/Student/Downloads/javafx-sdk-25/lib\" --add-modules javafx.controls"
+```
 
-1. Save your Java file and `launch.json`.
-2. Press **Ctrl+Shift+D** to open **Run and Debug**.
-3. Select **Run JavaFX Calculator (SDK, no Maven)**.
-4. Click the green Run button.
+Forward slashes are easiest to use in both JSON files, including on Windows. Keep the escaped quotes around the path inside `vmArgs`. Save both files.
 
-Do not use the plain **Run Java** shortcut if it launches without the JavaFX module-path arguments.
+**What the two settings do:**
+- `settings.json` tells VS Code where to find the JavaFX JAR libraries so that `javafx.*` imports are recognized while editing.
+- `launch.json` tells Java where to find JavaFX at run time. The `--add-modules javafx.controls` option loads the JavaFX controls module.
+
+### Step 4 — Run the installation test
+1. Open **Run and Debug** with **Ctrl+Shift+D**.
+2. Select **Run CMP129 JavaFX**, then click the green Run button.
+3. If the menu lists several applications, type the number beside **JavaFXInstallTest** and press Enter.
+4. A small window should open. Click **Test Button** and verify that you see **Success! Button clicked.**
+
+Keep `LabLauncher.java` unchanged. It searches the repository root for JavaFX applications, so you do not need to edit `mainClass` for each program. If you later complete `CalculatorApp.java` as a JavaFX `Application`, it will appear in the menu automatically.
+
+### Step 5 — Complete the assignment
+Your required file is `CalculatorApp.java`, in the repository root, with **no package statement**. Keep the class named `CalculatorApp` and follow the separate lab instructions. The supplied installation test is only to verify JavaFX; **it is not a calculator solution**.
+
+Do not use the plain **Run Java** shortcut if it does not include the JavaFX VM arguments. Use **Run and Debug → Run CMP129 JavaFX**.
 
 ### Troubleshooting
 
-| Error | Likely cause and fix |
+| Problem | Fix |
 | --- | --- |
-| `Error occurred during initialization of boot layer` / `Module javafx.controls not found` | Check that `vmArgs` points to the **extracted** `lib` folder and that `javafx.controls.jar` is present. |
-| `UnsupportedClassVersionError` or unsupported class-file version | The JavaFX SDK requires a newer JDK. Install a matching SDK/JDK combination. |
-| `JavaFX runtime components are missing` | Launch with the provided **Run and Debug** configuration rather than the plain Run Java button. |
-| `Could not find or load main class CalculatorApp` | Confirm the filename, class declaration, workspace root, and launch configuration match. |
-| Red underlines under `javafx.*` imports | Add the SDK JAR files to `java.project.referencedLibraries` as described above. |
+| Red underline under `javafx.*` | Verify the path ending in `lib/*.jar` in `settings.json`. Run **Java: Clean Java Language Server Workspace** if needed. |
+| `Module javafx.controls not found` or boot-layer error | Verify that `launch.json` points to the **extracted** `lib` folder, not the ZIP or `bin` folder. |
+| `JavaFX runtime components are missing` | Select **Run CMP129 JavaFX** in Run and Debug instead of the regular Run Java button. |
+| `UnsupportedClassVersionError` | Your JDK and JavaFX SDK are incompatible; use a compatible pair. |
+| `Could not find or load main class LabLauncher` | Open the repository's top-level folder, save files, and verify the Java extensions are installed. |
+| No JavaFX app found | Run or restore `JavaFXInstallTest.java`; your calculator must extend `Application` when implemented. |
 
-### Before submitting
+**No Maven setup or project generator is required for this manual SDK approach.** A `pom.xml` may be present for other workflows, but these instructions use the SDK and VS Code Run and Debug.
 
-Test the calculator according to the lab instructions. Submit the required Java source and `AI-Use-Report.md`. Follow the assignment's AI-use policy. **Do not commit the downloaded JavaFX SDK ZIP or its extracted JAR files** to this repository.
+Do not commit JavaFX SDK ZIPs or JAR files. Follow the lab's existing assignment and AI-use instructions.

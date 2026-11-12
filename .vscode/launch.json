@@ -3,12 +3,19 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Run CMP129 JavaFX",
+      "name": "JavaFXInstallTest",
       "request": "launch",
-      "mainClass": "LabLauncher",
+      "mainClass": "JavaFXInstallTest",
+      "projectName": "cmp129-week12-lab01"
+    },
+    {
+      "type": "java",
+      "name": "Run Honors JavaFX",
+      "request": "launch",
+      "mainClass": "JavaFXInstallTest",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "vmArgs": "--module-path \"C:/REPLACE-WITH-YOUR-JAVAFX-SDK/lib\" --add-modules javafx.controls"
+      "vmArgs": "--module-path \"C:/Users/AHedhli/Downloads/openjfx-27.0.1_windows-x64_bin-sdk (1)/javafx-sdk-27.0.1/lib\" --add-modules javafx.controls"
     }
   ]
 }

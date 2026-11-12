@@ -2,19 +2,7 @@
   "java.project.sourcePaths": ["."],
   "java.project.outputPath": "bin",
   "java.project.referencedLibraries": [
-    "C:/REPLACE-WITH-YOUR-JAVAFX-SDK/lib/*.jar"
+    "C:/Users/AHedhli/Downloads/openjfx-27.0.1_windows-x64_bin-sdk (1)/javafx-sdk-27.0.1/lib/*.jar"
   ],
-  "java.debug.settings.onBuildFailureProceed": false,
-
-  "chat.disableAIFeatures": false,
-  "chat.agent.enabled": false,
-  "chat.includeReferencedInstructions": true,
-  "github.copilot.enable": {
-    "*": false,
-    "java": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-  "github.copilot.nextEditSuggestions.enabled": false
+  "java.debug.settings.onBuildFailureProceed": false
 }

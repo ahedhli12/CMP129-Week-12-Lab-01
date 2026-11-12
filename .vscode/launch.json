@@ -5,14 +5,14 @@
       "type": "java",
       "name": "JavaFXInstallTest",
       "request": "launch",
-      "mainClass": "JavaFXInstallTest",
+      "mainClass": "${fileBasenameNoExtension}",
       "projectName": "cmp129-week12-lab01"
     },
     {
       "type": "java",
       "name": "Run Honors JavaFX",
       "request": "launch",
-      "mainClass": "JavaFXInstallTest",
+      "mainClass": "${fileBasenameNoExtension}",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "vmArgs": "--module-path \"C:/Users/AHedhli/Downloads/openjfx-27.0.1_windows-x64_bin-sdk (1)/javafx-sdk-27.0.1/lib\" --add-modules javafx.controls"

@@ -3,14 +3,7 @@
   "configurations": [
     {
       "type": "java",
-      "name": "JavaFXInstallTest",
-      "request": "launch",
-      "mainClass": "${fileBasenameNoExtension}",
-      "projectName": "cmp129-week12-lab01"
-    },
-    {
-      "type": "java",
-      "name": "Run Honors JavaFX",
+      "name": "Run JavaFX",
       "request": "launch",
       "mainClass": "${fileBasenameNoExtension}",
       "cwd": "${workspaceFolder}",

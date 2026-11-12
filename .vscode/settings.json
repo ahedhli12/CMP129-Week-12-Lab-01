@@ -1,8 +1,14 @@
 {
+  "java.project.sourcePaths": ["."],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "C:/REPLACE-WITH-YOUR-JAVAFX-SDK/lib/*.jar"
+  ],
+  "java.debug.settings.onBuildFailureProceed": false,
+
   "chat.disableAIFeatures": false,
   "chat.agent.enabled": false,
   "chat.includeReferencedInstructions": true,
-
   "github.copilot.enable": {
     "*": false,
     "java": false,
@@ -10,6 +16,5 @@
     "markdown": false,
     "scminput": false
   },
-
   "github.copilot.nextEditSuggestions.enabled": false
 }

@@ -5,7 +5,7 @@
       "type": "java",
       "name": "Run JavaFX",
       "request": "launch",
-      "mainClass": "${fileBasenameNoExtension}",
+      "mainClass": "${file}",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "vmArgs": "--module-path \"C:/Users/AHedhli/Downloads/openjfx-27.0.1_windows-x64_bin-sdk (1)/javafx-sdk-27.0.1/lib\" --add-modules javafx.controls"
